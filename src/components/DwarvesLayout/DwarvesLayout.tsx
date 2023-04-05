@@ -1,23 +1,23 @@
 import { IconHome } from 'components/icons/components/IconHome'
 import { IconTable } from 'components/icons/components/IconTable'
-import { ROUTES } from 'constants/routes'
+import { DFROUTES } from 'constants/routes'
 import Link from 'next/link'
 import cx from 'classnames'
 import { useRouter } from 'next/router'
 import { WithChildren } from 'types/common'
 import { Logo } from 'components/Logo'
-import { Header } from 'components/Header'
+import { DwarvesHeader } from 'components/DwarvesHeader'
 import { useAuthContext } from 'context/auth'
 import { useEffect, useState } from 'react'
 import { IconBookOpen } from 'components/icons/components/IconBookOpen'
 import { IconSwitchVertical } from 'components/icons/components/IconSwitchVertical'
 
 const menuItems = [
-  { name: 'Dashboard', href: ROUTES.DASHBOARD, Icon: IconHome },
-  { name: 'Forms', href: ROUTES.FORMS, Icon: IconTable },
+  { name: 'Dashboard', href: DFROUTES.DASHBOARD, Icon: IconHome },
+  { name: 'Forms', href: DFROUTES.FORMS, Icon: IconTable },
   {
     name: 'Data fetching',
-    href: ROUTES.DATA_FETCHING,
+    href: DFROUTES.DATA_FETCHING,
     Icon: IconSwitchVertical,
   },
   {
@@ -36,7 +36,7 @@ export const DwarvesLayout = ({ children }: WithChildren) => {
 
   useEffect(() => {
     if (!isLogin) {
-      push(ROUTES.LOGIN)
+      push(DFROUTES.LOGIN)
     } else {
       setHydrated(true)
     }
@@ -77,7 +77,7 @@ export const DwarvesLayout = ({ children }: WithChildren) => {
         </div>
       </aside>
       <main className="flex-1">
-        <Header />
+        <DwarvesHeader />
         <div className="px-8 py-6">
           <div className="flex space-y-6 flex-col max-w-7xl w-full mx-auto">
             {children}

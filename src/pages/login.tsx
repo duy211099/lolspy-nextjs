@@ -9,7 +9,7 @@ import { Checkbox } from 'components/Checkbox'
 import { Divider } from 'components/Divider'
 import { useAuthContext } from 'context/auth'
 import { useRouter } from 'next/router'
-import { ROUTES } from 'constants/routes'
+import { DFROUTES } from 'constants/routes'
 import { Logo } from 'components/Logo'
 
 const loginFormDefaultValues = { email: '', password: '' }
@@ -32,7 +32,7 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (isLogin) {
-      push(ROUTES.DASHBOARD)
+      push(DFROUTES.DASHBOARD)
     }
   }, [isLogin, push])
 
