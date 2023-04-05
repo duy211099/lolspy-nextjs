@@ -1,4 +1,4 @@
-import { Layout } from 'components/Layout'
+import { DwarvesLayout } from 'components/DwarvesLayout'
 import { Heading } from 'components/Heading'
 import { Text } from 'components/Text'
 import { Card } from 'components/Card'
@@ -154,7 +154,7 @@ const NotificationForm = () => {
 
 const FormsPage = () => {
   return (
-    <Layout>
+    <DwarvesLayout>
       <Heading as="h3">Forms</Heading>
 
       <div className="grid grid-cols-3 gap-10">
@@ -182,7 +182,7 @@ const FormsPage = () => {
           <NotificationForm />
         </div>
       </div>
-    </Layout>
+    </DwarvesLayout>
   )
 }
 

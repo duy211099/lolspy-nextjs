@@ -1,4 +1,4 @@
-import { Layout } from 'components/Layout'
+import { DwarvesLayout } from 'components/DwarvesLayout'
 import { Heading } from 'components/Heading'
 import { Card } from 'components/Card'
 import { Text } from 'components/Text'
@@ -11,7 +11,7 @@ const DataFetchingPage = () => {
   const { users, isLoading } = useFetchUsers()
 
   return (
-    <Layout>
+    <DwarvesLayout>
       <div className="space-y-px">
         <Heading as="h3">Data fetching</Heading>
         <Text className="text-gray-500">
@@ -81,7 +81,7 @@ const DataFetchingPage = () => {
           ]}
         />
       </Card>
-    </Layout>
+    </DwarvesLayout>
   )
 }
 
