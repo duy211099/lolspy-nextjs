@@ -12,11 +12,11 @@ export const ChampionList = () => {
 
   const championKeys = Object.keys(champions)
   return (
-    <div className="flex flex-wrap px-6 py-4 gap-4 ">
+    <div className="flex flex-wrap gap-4 px-6 py-4 ">
       {championKeys.map((key) => {
         const champion = champions[key]
         return (
-          <div className="flex flex-col w-40 items-center relative">
+          <div className="relative flex w-40 flex-col items-center">
             <div>
               <Image
                 src={kChampionIconUrl(champion?.id)}
