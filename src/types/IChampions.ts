@@ -5,7 +5,7 @@ export interface IChampion {
   name: string
   title: string
   blurb: string
-  info: any
+  info: IChampionInfo
   image: IChampionImage
   tag: string[]
   partype: string[]
@@ -26,6 +26,10 @@ export interface IChampionResponse {
 
 export interface IChampions {
   [key: string]: IChampion
+}
+
+export interface IChampionInfo {
+  difficulty: number
 }
 
 export interface IChampionImage {
