@@ -5,12 +5,12 @@ import { WithChildren } from 'types/common'
 
 export const Layout = ({ children }: WithChildren) => {
   return (
-    <div className="flex flex-col min-h-screen h-full bg-gray-100">
+    <div className="flex h-full min-h-screen flex-col bg-general-base-500">
       <Header />
-      <main className="flex-1 flex">
+      <main className="flex flex-1">
         <Navbar />
         <div>
-          <div>{children}</div>
+          <div className="">{children}</div>
         </div>
       </main>
       <footer>Footer</footer>

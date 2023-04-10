@@ -12,27 +12,33 @@ export const ChampionList = () => {
 
   const championKeys = Object.keys(champions)
   return (
-    <div className="flex flex-wrap gap-4 px-6 py-4 ">
+    <div className="grid grid-cols-4 gap-4 px-6 py-4">
       {championKeys.map((key) => {
         const champion = champions[key]
         return (
-          <div className="relative flex w-40 flex-col items-center">
-            <div>
+          <div className="relative flex flex-col items-center rounded-md border border-solid border-general-base-100 bg-martinique px-5 pt-10 pb-10">
+            <div className="relative h-20 w-20 overflow-hidden rounded-full border-4 border-general-gold-200">
               <Image
                 src={kChampionIconUrl(champion?.id)}
                 alt={champion?.key ?? ''}
                 priority
-                width={120}
-                height={120}
-                className="rounded-full"
+                layout="fill"
+                className="scale-110 rounded-full"
               />
             </div>
-            <p>{champion.name}</p>
-            <p>{champion.title}</p>
-            <p>{champion.info.difficulty}</p>
-            <div className="absolute top-0 left-0 right-0 flex justify-between">
-              <p>left</p>
-              <p>right</p>
+            <p className="mt-6 font-sans text-xl text-general-gold-200">
+              {champion.name}
+            </p>
+            <p className="mt-2 text-sm text-general-grey-200">
+              {champion.title}
+            </p>
+            <div className="mt-5 flex items-center justify-center gap-4 text-white">
+              <div className="h-4 w-4 rounded-full border-2" />
+              <span>{champion.info.difficulty}</span>
+            </div>
+            <div>
+              <p className="absolute top-4 left-4">left</p>
+              <p className="absolute top-4 right-4">right</p>
             </div>
           </div>
         )

@@ -5,7 +5,6 @@ import React from 'react'
 const Champions = () => {
   return (
     <Layout>
-      champions
       <ChampionList />
     </Layout>
   )
