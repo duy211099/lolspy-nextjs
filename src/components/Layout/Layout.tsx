@@ -9,9 +9,7 @@ export const Layout = ({ children }: WithChildren) => {
       <Header />
       <main className="flex flex-1">
         <Navbar />
-        <div>
-          <div className="">{children}</div>
-        </div>
+        <div className="flex-1">{children}</div>
       </main>
       <footer>Footer</footer>
     </div>

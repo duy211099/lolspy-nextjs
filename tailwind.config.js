@@ -10,7 +10,7 @@ module.exports = {
     extend: {
       fontFamily: {
         ...theme.fontFamily,
-        sans: ['Inter', ...theme.fontFamily.serif],
+        sans: ['Roboto', ...theme.fontFamily.serif],
       },
       colors: {
         pink: {

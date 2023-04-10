@@ -7,7 +7,7 @@ export interface IChampion {
   blurb: string
   info: IChampionInfo
   image: IChampionImage
-  tag: string[]
+  tags: string[]
   partype: string[]
   stats: any
 }

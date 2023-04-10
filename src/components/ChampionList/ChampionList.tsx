@@ -16,7 +16,10 @@ export const ChampionList = () => {
       {championKeys.map((key) => {
         const champion = champions[key]
         return (
-          <div className="relative flex flex-col items-center rounded-md border border-solid border-general-base-100 bg-martinique px-5 pt-10 pb-10">
+          <div
+            key={key}
+            className="relative flex flex-col items-center rounded-md border border-solid border-general-base-100 bg-martinique px-5 pt-10 pb-6"
+          >
             <div className="relative h-20 w-20 overflow-hidden rounded-full border-4 border-general-gold-200">
               <Image
                 src={kChampionIconUrl(champion?.id)}
@@ -26,10 +29,10 @@ export const ChampionList = () => {
                 className="scale-110 rounded-full"
               />
             </div>
-            <p className="mt-6 font-sans text-xl text-general-gold-200">
+            <p className="mt-6 font-sans text-2xl tracking-wide text-general-gold-200">
               {champion.name}
             </p>
-            <p className="mt-2 text-sm text-general-grey-200">
+            <p className="mt-2 text-sm capitalize tracking-wide text-general-grey-200">
               {champion.title}
             </p>
             <div className="mt-5 flex items-center justify-center gap-4 text-white">
@@ -37,8 +40,10 @@ export const ChampionList = () => {
               <span>{champion.info.difficulty}</span>
             </div>
             <div>
-              <p className="absolute top-4 left-4">left</p>
-              <p className="absolute top-4 right-4">right</p>
+              <p className="absolute top-4 left-4 text-white">
+                {champion.tags.reduce((a, b) => `${a  } ${  b}`, '')}
+              </p>
+              <p className="absolute top-4 right-4 text-white">right</p>
             </div>
           </div>
         )
