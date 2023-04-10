@@ -5,6 +5,8 @@ import NProgressHandler from 'components/NProgressHandler'
 import Head from 'next/head'
 import { AuthContextProvider } from 'context/auth'
 import { Toaster } from 'components/Toast'
+import { GlobalContextProvider } from 'context/global'
+import { Layout } from 'components/Layout'
 
 class MyApp extends App {
   render() {
@@ -34,8 +36,12 @@ class MyApp extends App {
           <meta name="twitter:image" content="/thumbnail.jpeg" />
         </Head>
         <AuthContextProvider>
-          <NProgressHandler />
-          <Component {...pageProps} />
+          <GlobalContextProvider>
+            <NProgressHandler />
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </GlobalContextProvider>
         </AuthContextProvider>
         <Toaster />
       </>

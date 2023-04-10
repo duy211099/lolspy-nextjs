@@ -1,10 +1,13 @@
-import { kChampionsUrl } from 'constants/kApi'
+import { kGetChampionsUrl, kVersionUrl } from 'constants/kApi'
 import { IChampionResponse } from 'types/IChampions'
 import fetcher from './fetcher'
 
 class DDragonClient {
-  getChampions() {
-    return fetcher<IChampionResponse>(`${kChampionsUrl}`)
+  getVersion() {
+    return fetcher<string[]>(`${kVersionUrl}`)
+  }
+  getChampions(version: string) {
+    return fetcher<IChampionResponse>(kGetChampionsUrl(version))
   }
 }
 const ddragonClient = new DDragonClient()

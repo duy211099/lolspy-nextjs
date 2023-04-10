@@ -14,7 +14,7 @@ const menuItems = [
 
 export const Navbar = () => {
   return (
-    <div>
+    <div className="text-white">
       <a>Icon</a>
       {menuItems.map(({ Icon, name, href }) => {
         const external = href.startsWith('http')
@@ -23,9 +23,9 @@ export const Navbar = () => {
             <a
               target={external ? '_blank' : undefined}
               rel={external ? 'noopener' : undefined}
-              className={cx('flex w-full p-2 space-x-3 rounded-md')}
+              className={cx('flex w-full space-x-3 rounded-md p-2')}
             >
-              <Icon className="w-6 h-6" /> <span>{name}</span>
+              <Icon className="h-6 w-6" /> <span>{name}</span>
             </a>
           </Link>
         )
