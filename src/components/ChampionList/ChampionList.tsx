@@ -5,8 +5,12 @@ import { kChampionIconUrl } from 'constants/kApi'
 import { useGlobalContext } from 'context/global'
 
 export const ChampionList = () => {
-  const { version, language } = useGlobalContext()
-  const { data, isLoading, mutate } = useFetchChampions(version)
+  const {
+    versions: version,
+    languages: language,
+    selectedVersion,
+  } = useGlobalContext()
+  const { champion, isLoading, mutate } = useFetchChampions(selectedVersion)
 
   useEffect(() => {
     mutate()
@@ -14,7 +18,7 @@ export const ChampionList = () => {
 
   if (isLoading) return <>'Loading...'</>
 
-  const champions = data?.data ?? {}
+  const champions = champion?.data ?? {}
 
   const championKeys = Object.keys(champions)
   return (

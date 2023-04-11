@@ -3,21 +3,40 @@ import { useState } from 'react'
 import { WithChildren } from 'types/common'
 
 interface GlobalContextValues {
-  version: string
-  language: string
-  setVersion: (value: string) => void
-  setLanguage: (value: string) => void
+  versions: string[]
+  languages: string[]
+  selectedVersion: string
+  selectedLanguage: string
+
+  setVersions: (value: string[]) => void
+  setLanguages: (value: string[]) => void
+  setSelectedVersion: (value: string) => void
+  setSelectedLanguage: (value: string) => void
 }
 const [Provider, useGlobalContext] = createContext<GlobalContextValues>({
   name: 'global',
 })
 
 const GlobalContextProvider = ({ children }: WithChildren) => {
-  const [version, setVersion] = useState<string>('')
-  const [language, setLanguage] = useState<string>('')
+  const [versions, setVersions] = useState<string[]>([])
+  const [languages, setLanguages] = useState<string[]>([])
+
+  const [selectedVersion, setSelectedVersion] = useState<string>('')
+  const [selectedLanguage, setSelectedLanguage] = useState<string>('')
 
   return (
-    <Provider value={{ version, setVersion, language, setLanguage }}>
+    <Provider
+      value={{
+        versions,
+        languages,
+        selectedVersion,
+        selectedLanguage,
+        setSelectedLanguage,
+        setVersions,
+        setLanguages,
+        setSelectedVersion,
+      }}
+    >
       {children}
     </Provider>
   )

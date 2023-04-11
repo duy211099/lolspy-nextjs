@@ -4,7 +4,7 @@ import { ddragonClient } from 'libs/ddApi'
 const SWR_KEY = 'GET_VERSION'
 
 export function useFetchVersion() {
-  const result = useSWR(SWR_KEY, () => ddragonClient.getVersion())
+  const { data, ...rest } = useSWR(SWR_KEY, () => ddragonClient.getVersion())
 
-  return result
+  return { version: data, ...rest }
 }

@@ -1,17 +1,52 @@
 import '../styles/index.css'
-import React from 'react'
-import App from 'next/app'
+import React, { useEffect } from 'react'
+import App, { AppProps } from 'next/app'
 import NProgressHandler from 'components/NProgressHandler'
 import Head from 'next/head'
 import { AuthContextProvider } from 'context/auth'
 import { Toaster } from 'components/Toast'
-import { GlobalContextProvider } from 'context/global'
+import { GlobalContextProvider, useGlobalContext } from 'context/global'
 import { Layout } from 'components/Layout'
+import { useFetchVersion } from 'hooks/data/useFetchVersion'
+import { useFetchLanguage } from 'hooks/data/useFetchLanguage'
+
+function MyAppBody({ Component, pageProps }: AppProps) {
+  const { version: fetchedVersion } = useFetchVersion()
+  const { language: fetchedLanguage } = useFetchLanguage()
+  const { setSelectedLanguage, setVersions, setLanguages, setSelectedVersion } =
+    useGlobalContext()
+
+  useEffect(() => {
+    if (fetchedLanguage && fetchedVersion) {
+      setVersions(fetchedVersion)
+      setLanguages(fetchedLanguage)
+      setSelectedVersion(fetchedVersion[0])
+      setSelectedLanguage(fetchedLanguage[0])
+    }
+  }, [
+    fetchedVersion,
+    fetchedLanguage,
+    setVersions,
+    setLanguages,
+    setSelectedVersion,
+    setSelectedLanguage,
+  ])
+
+  if (!fetchedLanguage || !fetchedVersion) return null
+
+  return (
+    <>
+      <NProgressHandler />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+      <Toaster />
+    </>
+  )
+}
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps } = this.props
-
     return (
       <>
         <Head>
@@ -35,17 +70,15 @@ class MyApp extends App {
           <meta property="og:image" content="/thumbnail.jpeg" />
           <meta name="twitter:image" content="/thumbnail.jpeg" />
         </Head>
+
         <AuthContextProvider>
           <GlobalContextProvider>
-            <NProgressHandler />
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
+            <MyAppBody {...this.props} />
           </GlobalContextProvider>
         </AuthContextProvider>
-        <Toaster />
       </>
     )
   }
 }
+
 export default MyApp
