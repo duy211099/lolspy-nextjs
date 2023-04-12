@@ -6,10 +6,27 @@ export interface IChampion {
   title: string
   blurb: string
   info: IChampionInfo
-  image: IChampionImage
+  image: IImage
   tags: string[]
   partype: string[]
   stats: any
+  spells: ISpell[]
+  passive: IPassive
+  allytips: string[]
+  enemytips: string[]
+}
+
+export interface ISpell {
+  id: string
+  name: string
+  description: string
+  tooltip: string
+  image: IImage
+}
+export interface IPassive {
+  name: string
+  description: string
+  image: IImage
 }
 
 export type tType = 'champion' | string
@@ -32,7 +49,7 @@ export interface IChampionInfo {
   difficulty: number
 }
 
-export interface IChampionImage {
+export interface IImage {
   full: string
   sprite: string
   group: string

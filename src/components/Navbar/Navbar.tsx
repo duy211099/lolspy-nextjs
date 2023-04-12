@@ -14,7 +14,7 @@ const menuItems = [
 
 export const Navbar = () => {
   return (
-    <div className="text-white">
+    <div className="border-r border-white border-r-nav-border text-white">
       <a>Icon</a>
       {menuItems.map(({ Icon, name, href }) => {
         const external = href.startsWith('http')

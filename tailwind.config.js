@@ -175,6 +175,9 @@ module.exports = {
             },
           },
         },
+        nav: {
+          border: '#251e47',
+        },
         purple: '#aaabca',
         success: '#00b972',
         greeny: '#4cb748',

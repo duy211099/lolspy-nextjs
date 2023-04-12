@@ -9,9 +9,15 @@ export const kLanguageUrl = `${kDDragonCDN}/languages.json`
 
 export const kGetChampionsUrl = (version: string) =>
   `${kDDragonCDN}/${version}/data/${kLanguage}/champion.json`
+export const kGetChampionUrl = (version: string, id: string) =>
+  `${kDDragonCDN}/${version}/data/${kLanguage}/champion/${id}.json`
 export const kChampionSplashUrl = (id = '', index = 0) =>
   `${kDDragonCDN}/img/champion/splash/${id}_${index}.jpg`
 export const kChampionLoadingUrl = (id = '', index = 0) =>
   `${kDDragonCDN}/img/champion/loading/${id}_${index}.jpg`
 export const kChampionIconUrl = (id = '') =>
   `${kDDragonCDN}/${kVersion}/img/champion/${id}.png`
+export const kGetSpellImgUrl = (version: string, name: string) =>
+  `${kDDragonCDN}/${version}/img/spell/${name}`
+export const kGetPassiveImgUrl = (version: string, name: string) =>
+  `${kDDragonCDN}/${version}/img/passive/${name}`
