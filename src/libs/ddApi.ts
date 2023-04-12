@@ -3,7 +3,7 @@ import {
   kGetChampionsUrl,
   kLanguageUrl,
   kVersionUrl,
-} from 'constants/kApi'
+} from 'constants/kDDragonApi'
 import { IChampionResponse } from 'types/IChampions'
 import fetcher from './fetcher'
 

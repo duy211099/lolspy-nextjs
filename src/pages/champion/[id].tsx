@@ -2,9 +2,9 @@ import {
   kChampionIconUrl,
   kGetPassiveImgUrl,
   kGetSpellImgUrl,
-} from 'constants/kApi'
+} from 'constants/kDDragonApi'
 import { useGlobalContext } from 'context/global'
-import { useFetchChampion } from 'hooks/data/useFetchChampion'
+import { useFetchChampion } from 'hooks/data/dDragon/useFetchChampion'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
@@ -16,12 +16,24 @@ interface ParsedUrlQueryForPage extends ParsedUrlQuery {
 
 const Champion = () => {
   const router = useRouter()
-  const { selectedVersion } = useGlobalContext()
+  const { selectedVersion, recommendRunes } = useGlobalContext()
   const { id } = router.query as ParsedUrlQueryForPage
   const { data } = useFetchChampion(selectedVersion, id)
-  console.log('duy idd', id, data)
-  const champion = data?.data[id]
 
+  const champion = data?.data[id]
+  const key = champion?.key
+  const recommendRune: any = recommendRunes.find(
+    (_) => _.championId.toString() === key,
+  )
+  console.log(
+    'recommendRune',
+    recommendRune,
+    recommendRunes,
+    key,
+    typeof key,
+    recommendRunes[0].championId,
+    typeof recommendRunes[0].championId,
+  )
   if (!champion || !id) return <>Loading...</>
 
   return (
@@ -31,7 +43,7 @@ const Champion = () => {
         <div className="relative h-24 w-24 overflow-hidden rounded-full border-4 border-general-gold-200">
           <Image
             src={kChampionIconUrl(champion?.id)}
-            alt={champion?.key ?? ''}
+            alt={`${champion?.key  }` ?? ''}
             priority
             layout="fill"
             className="scale-110 rounded-full"
@@ -62,6 +74,7 @@ const Champion = () => {
           </div>
         </div>
       </div>
+      <div>{JSON.stringify(recommendRune)}</div>
       <h3>General information</h3>
       <div className="flex gap-4">
         <div>

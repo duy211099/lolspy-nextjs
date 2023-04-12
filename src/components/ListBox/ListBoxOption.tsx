@@ -8,7 +8,7 @@ export const ListBoxOption = ({ ...props }) => {
   return (
     <Listbox.Option
       className={({ active }) =>
-        `relative cursor-default select-none py-2 pl-10 pr-4 ${
+        `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
           active ? 'bg-amber-100 text-amber-900' : 'text-gray-900'
         }`
       }

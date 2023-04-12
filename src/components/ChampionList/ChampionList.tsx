@@ -1,10 +1,10 @@
-import { useFetchChampions } from 'hooks/data/useFetchChampions'
 import React, { useEffect } from 'react'
 import Image from 'next/image'
-import { kChampionIconUrl } from 'constants/kApi'
+import { kChampionIconUrl } from 'constants/kDDragonApi'
 import { useGlobalContext } from 'context/global'
 import { ROUTES } from 'constants/routes'
 import Link from 'next/link'
+import { useFetchChampions } from 'hooks'
 
 export const ChampionList = () => {
   const { languages, selectedVersion, selectedLanguage } = useGlobalContext()
@@ -32,7 +32,7 @@ export const ChampionList = () => {
           const champion = champions[key]
           return (
             <Link href={`${ROUTES.CHAMPION}/${key}`} key={key}>
-              <div className="relative flex cursor-pointer flex-col items-center rounded-md border border-solid border-general-base-100 bg-martinique px-5 pt-10 pb-6">
+              <div className="relative flex cursor-pointer flex-col items-center rounded-md border border-solid border-general-base-100 bg-martinique px-5 pt-10 pb-6 duration-150 hover:scale-105 hover:border-general-gold-200">
                 <div className="relative h-20 w-20 overflow-hidden rounded-full border-4 border-general-gold-200">
                   <Image
                     src={kChampionIconUrl(champion?.id)}
@@ -54,9 +54,10 @@ export const ChampionList = () => {
                 </div>
                 <div>
                   <p className="absolute top-4 left-4 text-white">
-                    {champion.tags.reduce((a, b) => `${a} ${b}`, '')}
+                    {champion.tags[0]}
+                    {/* {champion.tags.reduce((a, b) => `${a} ${b}`, '')} */}
                   </p>
-                  <p className="absolute top-4 right-4 text-white">right</p>
+                  {/* <p className="absolute top-4 right-4 text-white">right</p> */}
                 </div>
               </div>
             </Link>

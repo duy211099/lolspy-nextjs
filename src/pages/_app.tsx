@@ -7,29 +7,41 @@ import { AuthContextProvider } from 'context/auth'
 import { Toaster } from 'components/Toast'
 import { GlobalContextProvider, useGlobalContext } from 'context/global'
 import { Layout } from 'components/Layout'
-import { useFetchVersion } from 'hooks/data/useFetchVersion'
-import { useFetchLanguage } from 'hooks/data/useFetchLanguage'
+import {
+  useFetchLanguage,
+  useFetchRecommendRunes,
+  useFetchVersion,
+} from 'hooks'
 
 function MyAppBody({ Component, pageProps }: AppProps) {
   const { version: fetchedVersion } = useFetchVersion()
   const { language: fetchedLanguage } = useFetchLanguage()
-  const { setSelectedLanguage, setVersions, setLanguages, setSelectedVersion } =
-    useGlobalContext()
+  const { data: fetchedRecommendRunes } = useFetchRecommendRunes()
+  const {
+    setSelectedLanguage,
+    setVersions,
+    setLanguages,
+    setSelectedVersion,
+    setRecommendRunes,
+  } = useGlobalContext()
 
   useEffect(() => {
-    if (fetchedLanguage && fetchedVersion) {
+    if (fetchedLanguage && fetchedVersion && fetchedRecommendRunes) {
       setVersions(fetchedVersion)
       setLanguages(fetchedLanguage)
       setSelectedVersion(fetchedVersion[0])
       setSelectedLanguage(fetchedLanguage[0])
+      setRecommendRunes(fetchedRecommendRunes)
     }
   }, [
     fetchedVersion,
     fetchedLanguage,
+    fetchedRecommendRunes,
     setVersions,
     setLanguages,
     setSelectedVersion,
     setSelectedLanguage,
+    setRecommendRunes,
   ])
 
   if (!fetchedLanguage || !fetchedVersion) return null

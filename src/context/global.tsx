@@ -7,11 +7,13 @@ interface GlobalContextValues {
   languages: string[]
   selectedVersion: string
   selectedLanguage: string
+  recommendRunes: any[]
 
   setVersions: (value: string[]) => void
   setLanguages: (value: string[]) => void
   setSelectedVersion: (value: string) => void
   setSelectedLanguage: (value: string) => void
+  setRecommendRunes: (value: any) => void
 }
 const [Provider, useGlobalContext] = createContext<GlobalContextValues>({
   name: 'global',
@@ -23,6 +25,7 @@ const GlobalContextProvider = ({ children }: WithChildren) => {
 
   const [selectedVersion, setSelectedVersion] = useState<string>('')
   const [selectedLanguage, setSelectedLanguage] = useState<string>('')
+  const [recommendRunes, setRecommendRunes] = useState<any[]>([])
 
   return (
     <Provider
@@ -35,6 +38,8 @@ const GlobalContextProvider = ({ children }: WithChildren) => {
         setVersions,
         setLanguages,
         setSelectedVersion,
+        recommendRunes,
+        setRecommendRunes,
       }}
     >
       {children}
