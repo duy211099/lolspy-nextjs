@@ -7,7 +7,7 @@ import {
 import { useFetchPerkStyles } from 'hooks/data/cDragon/useFetchPerkStyles'
 import { useFetchPerks } from 'hooks/data/cDragon/useFetchPerks'
 import { useEffect, useState } from 'react'
-import { IPerkChampionRecommendation, IPerkStyles } from 'types/IPerk'
+import { IPerk, IPerkChampionRecommendation, IPerkStyles } from 'types/IPerk'
 import { WithChildren } from 'types/common'
 
 interface GlobalContextValues {
@@ -17,7 +17,7 @@ interface GlobalContextValues {
   selectedLanguage: string
   perkChampionRecommendations: IPerkChampionRecommendation[]
   allPerks: any[]
-  perkStyles?: IPerkStyles
+  perkStyles: IPerkStyles
 
   setVersions: (value: string[]) => void
   setLanguages: (value: string[]) => void
@@ -39,8 +39,11 @@ const GlobalContextProvider = ({ children }: WithChildren) => {
   const [selectedLanguage, setSelectedLanguage] = useState<string>('')
   const [perkChampionRecommendations, setPerkChampionRecommendations] =
     useState<IPerkChampionRecommendation[]>([])
-  const [allPerks, setAllPerks] = useState([])
-  const [perkStyles, setPerkStyles] = useState<IPerkStyles>()
+  const [allPerks, setAllPerks] = useState<IPerk[]>([])
+  const [perkStyles, setPerkStyles] = useState<IPerkStyles>({
+    schemaVersion: 0,
+    styles: [],
+  })
 
   const { version: fetchedVersion } = useFetchVersion()
   const { language: fetchedLanguage } = useFetchLanguage()

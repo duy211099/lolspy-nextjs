@@ -16,7 +16,7 @@ export interface IRuneRecommendation {
 }
 
 export interface IPerkStyles {
-  schemaVersion: 2
+  schemaVersion: number
   styles: IPerkStyle[]
 }
 export interface IPerkStyle {
@@ -31,7 +31,21 @@ export interface IPerkStyle {
   defaultSubStyle: number
   isAdvanced: boolean
   name: string
-  slots: any[]
+  slots: IPerkSlot[]
   subStyleBonus: any[]
+  tooltip: string
+}
+
+export interface IPerkSlot {
+  type: 'kKeyStone' | 'kMixedRegularSplashable' | 'kStatMod'
+  slotLabel: string
+  perks: number[]
+}
+
+export interface IPerk {
+  id: number
+  name: string
+  longDesc: string
+  shortDesc: string
   tooltip: string
 }
