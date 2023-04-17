@@ -1,5 +1,13 @@
 import { createContext } from '@dwarvesf/react-utils'
-import { useState } from 'react'
+import {
+  useFetchVersion,
+  useFetchLanguage,
+  useFetchRecommendRunes,
+} from 'hooks'
+import { useFetchPerkStyles } from 'hooks/data/cDragon/useFetchPerkStyles'
+import { useFetchPerks } from 'hooks/data/cDragon/useFetchPerks'
+import { useEffect, useState } from 'react'
+import { IPerkChampionRecommendation, IPerkStyles } from 'types/IPerk'
 import { WithChildren } from 'types/common'
 
 interface GlobalContextValues {
@@ -7,13 +15,17 @@ interface GlobalContextValues {
   languages: string[]
   selectedVersion: string
   selectedLanguage: string
-  recommendRunes: any[]
+  perkChampionRecommendations: IPerkChampionRecommendation[]
+  allPerks: any[]
+  perkStyles?: IPerkStyles
 
   setVersions: (value: string[]) => void
   setLanguages: (value: string[]) => void
   setSelectedVersion: (value: string) => void
   setSelectedLanguage: (value: string) => void
-  setRecommendRunes: (value: any) => void
+  setPerkChampionRecommendations: (value: any) => void
+  setPerkStyles: (value: any) => void
+  setAllPerks: (value: any) => void
 }
 const [Provider, useGlobalContext] = createContext<GlobalContextValues>({
   name: 'global',
@@ -25,7 +37,47 @@ const GlobalContextProvider = ({ children }: WithChildren) => {
 
   const [selectedVersion, setSelectedVersion] = useState<string>('')
   const [selectedLanguage, setSelectedLanguage] = useState<string>('')
-  const [recommendRunes, setRecommendRunes] = useState<any[]>([])
+  const [perkChampionRecommendations, setPerkChampionRecommendations] =
+    useState<IPerkChampionRecommendation[]>([])
+  const [allPerks, setAllPerks] = useState([])
+  const [perkStyles, setPerkStyles] = useState<IPerkStyles>()
+
+  const { version: fetchedVersion } = useFetchVersion()
+  const { language: fetchedLanguage } = useFetchLanguage()
+  const { data: fetchedRecommendRunes } = useFetchRecommendRunes()
+  const { data: fetchedPerks } = useFetchPerks()
+  const { data: fetchedPerkStyles } = useFetchPerkStyles()
+
+  useEffect(() => {
+    if (
+      fetchedLanguage &&
+      fetchedVersion &&
+      fetchedRecommendRunes &&
+      fetchedPerks &&
+      fetchedPerkStyles
+    ) {
+      setVersions(fetchedVersion)
+      setLanguages(fetchedLanguage)
+      setSelectedVersion(fetchedVersion[0])
+      setSelectedLanguage(fetchedLanguage[0])
+      setPerkChampionRecommendations(fetchedRecommendRunes)
+      setAllPerks(fetchedPerks)
+      setPerkStyles(fetchedPerkStyles)
+    }
+  }, [
+    fetchedLanguage,
+    fetchedVersion,
+    fetchedRecommendRunes,
+    fetchedPerks,
+    fetchedPerkStyles,
+    setVersions,
+    setLanguages,
+    setSelectedVersion,
+    setSelectedLanguage,
+    setPerkChampionRecommendations,
+    setAllPerks,
+    setPerkStyles,
+  ])
 
   return (
     <Provider
@@ -38,8 +90,12 @@ const GlobalContextProvider = ({ children }: WithChildren) => {
         setVersions,
         setLanguages,
         setSelectedVersion,
-        recommendRunes,
-        setRecommendRunes,
+        perkChampionRecommendations,
+        setPerkChampionRecommendations,
+        allPerks,
+        perkStyles,
+        setPerkStyles,
+        setAllPerks,
       }}
     >
       {children}

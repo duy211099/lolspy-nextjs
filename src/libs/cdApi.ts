@@ -1,9 +1,16 @@
-import { kRecommendRunes } from 'constants/kCDragonApi'
+import { kRecommendPerks } from 'constants/kCDragonApi'
+import { kPerks, kPerkStyles } from "../constants/kCDragonApi"
 import fetcher from './fetcher'
 
 class CDragonClient {
-  getRecommendRunes() {
-    return fetcher<any>(kRecommendRunes)
+  getRecommendPerks() {
+    return fetcher<any>(kRecommendPerks)
+  }
+  getPerkStyles() {
+    return fetcher<any>(kPerkStyles)
+  }
+  getPerks() {
+    return fetcher<any>(kPerks)
   }
 }
 const cdragonClient = new CDragonClient()

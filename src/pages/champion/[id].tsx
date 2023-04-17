@@ -1,3 +1,4 @@
+import { PerkChampionRecommendation } from 'components/PerkChampionRecommendation/PerkChampionRecommendation'
 import {
   kChampionIconUrl,
   kGetPassiveImgUrl,
@@ -8,7 +9,7 @@ import { useFetchChampion } from 'hooks/data/dDragon/useFetchChampion'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 interface ParsedUrlQueryForPage extends ParsedUrlQuery {
   id: string
@@ -16,17 +17,20 @@ interface ParsedUrlQueryForPage extends ParsedUrlQuery {
 
 const Champion = () => {
   const router = useRouter()
-  const { selectedVersion, recommendRunes } = useGlobalContext()
+  const { selectedVersion, perkChampionRecommendations } = useGlobalContext()
   const { id } = router.query as ParsedUrlQueryForPage
-  const { data } = useFetchChampion(selectedVersion, id)
+  const { data, trigger } = useFetchChampion(selectedVersion, id)
+
+  useEffect(() => {
+    trigger()
+  }, [id, trigger])
 
   const champion = data?.data[id]
   const key = champion?.key
-  const recommendRune: any = recommendRunes.find(
+  const perkChampionRecommendation = perkChampionRecommendations.find(
     (_) => _.championId.toString() === key,
   )
   if (!champion || !id) return <>Loading...</>
-
   return (
     <div className="m-8 text-white">
       {/* Header */}
@@ -65,8 +69,13 @@ const Champion = () => {
           </div>
         </div>
       </div>
-      <div>{JSON.stringify(recommendRune)}</div>
-      <h3>General information</h3>
+      <PerkChampionRecommendation
+        perkChampionRecommendation={perkChampionRecommendation}
+      />
+      <div className="mt-16">
+        {JSON.stringify(perkChampionRecommendation?.runeRecommendations[0])}
+      </div>
+      <h3 className=" mt-16">General information</h3>
       <div className="flex gap-4">
         <div>
           <h4>Ally Tips</h4>
@@ -79,8 +88,8 @@ const Champion = () => {
         <div>
           <h4>Enemy Tips</h4>
           <ul>
-            {champion?.enemytips?.map((tip) => {
-              return <li>{tip}</li>
+            {champion?.enemytips?.map((tip, index) => {
+              return <li key={index}>{tip}</li>
             })}
           </ul>
         </div>

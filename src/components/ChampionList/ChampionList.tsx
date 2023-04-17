@@ -12,8 +12,6 @@ export const ChampionList = () => {
 
   const { champion, isLoading, mutate } = rs
 
-  console.log('rs', rs)
-
   useEffect(() => {
     mutate(undefined)
   }, [selectedVersion, languages, mutate])
