@@ -17,6 +17,7 @@ module.exports = withBundleAnalyzer({
       {
         protocol: 'https',
         hostname: '**.leagueoflegends.com',
+        unoptimized: true,
       },
     ],
   },
