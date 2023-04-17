@@ -1,4 +1,3 @@
-import noop from '@dwarvesf/react-utils/dist/noop'
 import { useGlobalContext } from 'context/global'
 import React from 'react'
 import { IPerkChampionRecommendation } from 'types/IPerk'
@@ -10,7 +9,7 @@ type Props = {
 export const PerkChampionRecommendation = (props: Props) => {
   const { perkChampionRecommendation } = props
   const { perkStyles } = useGlobalContext()
-  if (!perkChampionRecommendation) return noop()
+  if (!perkChampionRecommendation) return null
 
   const primaryPerkStyle = perkStyles?.styles?.find(
     (perkStyle) =>
