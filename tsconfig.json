@@ -21,7 +21,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "baseUrl": "./src/",
-    "incremental": true
+    "incremental": true,
+    "importHelpers": true
   },
   "include": [
     "next-env.d.ts",

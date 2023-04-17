@@ -12,8 +12,10 @@ export const ChampionList = () => {
 
   const { champion, isLoading, mutate } = rs
 
+  console.log('rs', rs)
+
   useEffect(() => {
-    mutate()
+    mutate(undefined)
   }, [selectedVersion, languages, mutate])
 
   if (isLoading) return <>'Loading...'</>
