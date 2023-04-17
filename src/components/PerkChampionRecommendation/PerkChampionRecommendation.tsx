@@ -17,6 +17,7 @@ export const PerkChampionRecommendation = (props: Props) => {
     perkChampionRecommendation.runeRecommendations[0]
   const selectedPerkIds = [...selectedRuneRecommendation.perkIds]
 
+  // Primary
   const primaryPerkStyle = perkStyles?.styles?.find(
     (perkStyle) =>
       perkStyle.id === selectedRuneRecommendation.primaryPerkStyleId,
@@ -30,6 +31,7 @@ export const PerkChampionRecommendation = (props: Props) => {
   const primaryStats =
     primaryPerkStyle?.slots.filter((perk) => perk.type === 'kStatMod') ?? []
 
+  // Secondary
   const secondaryPerkStyle = perkStyles.styles.find(
     (perkStyle) =>
       perkStyle.id === selectedRuneRecommendation.secondaryPerkStyleId,
