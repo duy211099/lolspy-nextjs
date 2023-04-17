@@ -10,7 +10,6 @@ type Props = {
 export const PerkChampionRecommendation = (props: Props) => {
   const { perkChampionRecommendation } = props
   const { perkStyles, allPerks } = useGlobalContext()
-  console.log('allPerks', allPerks)
   if (!perkChampionRecommendation) return null
 
   const selectedRuneRecommendation =
@@ -49,8 +48,6 @@ export const PerkChampionRecommendation = (props: Props) => {
       return selected
     }
   }
-
-  console.log('selectedRuneRecommendation', selectedRuneRecommendation)
 
   return (
     <div className="flex">
