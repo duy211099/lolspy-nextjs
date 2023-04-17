@@ -9,7 +9,7 @@ import { Checkbox } from 'components/Checkbox'
 import { Divider } from 'components/Divider'
 import { useAuthContext } from 'context/auth'
 import { useRouter } from 'next/router'
-import { ROUTES } from 'constants/routes'
+import { DFROUTES } from 'constants/routes'
 import { Logo } from 'components/Logo'
 
 const loginFormDefaultValues = { email: '', password: '' }
@@ -32,14 +32,14 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (isLogin) {
-      push(ROUTES.DASHBOARD)
+      push(DFROUTES.DASHBOARD)
     }
   }, [isLogin, push])
 
   return (
-    <div className="w-full min-h-screen flex-col flex justify-center items-center space-y-8 bg-gray-100 pt-8 pb-28">
-      <div className="text-center flex flex-col items-center">
-        <div className="mb-6 transform scale-125">
+    <div className="flex min-h-screen w-full flex-col items-center justify-center space-y-8 bg-gray-100 pt-8 pb-28">
+      <div className="flex flex-col items-center text-center">
+        <div className="mb-6 scale-125 transform">
           <Logo />
         </div>
         <div className="space-y-1">
@@ -67,7 +67,7 @@ const LoginPage = () => {
               fullWidth
               rules={{ required: 'Required' }}
             />
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
               <Checkbox>Remember me</Checkbox>
               <Button appearance="link" type="button">
                 Forgot your password?

@@ -12,4 +12,14 @@ module.exports = withBundleAnalyzer({
   env: {
     BASE_URL: process.env.BASE_URL,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.leagueoflegends.com',
+        hostname: '**.communitydragon.org',
+      },
+    ],
+    unoptimized: true,
+  },
 })

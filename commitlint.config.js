@@ -18,7 +18,8 @@ module.exports = {
         'revert',
         'ci',
         'build',
+        'learn',
       ],
     ],
   },
-};
+}

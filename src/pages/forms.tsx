@@ -1,4 +1,4 @@
-import { Layout } from 'components/Layout'
+import { DwarvesLayout } from 'components/DwarvesLayout'
 import { Heading } from 'components/Heading'
 import { Text } from 'components/Text'
 import { Card } from 'components/Card'
@@ -105,7 +105,7 @@ const PersonalForm = () => {
               />
             </div>
           </div>
-          <div className="px-5 py-2 text-right bg-gray-50 rounded-b-md">
+          <div className="rounded-b-md bg-gray-50 px-5 py-2 text-right">
             <Button appearance="primary" type="submit">
               Save
             </Button>
@@ -141,7 +141,7 @@ const NotificationForm = () => {
               </FormCheckboxGroup>
             </div>
           </div>
-          <div className="px-5 py-2 text-right bg-gray-50 rounded-b-md">
+          <div className="rounded-b-md bg-gray-50 px-5 py-2 text-right">
             <Button appearance="primary" type="submit">
               Save
             </Button>
@@ -154,7 +154,7 @@ const NotificationForm = () => {
 
 const FormsPage = () => {
   return (
-    <Layout>
+    <DwarvesLayout>
       <Heading as="h3">Forms</Heading>
 
       <div className="grid grid-cols-3 gap-10">
@@ -182,7 +182,7 @@ const FormsPage = () => {
           <NotificationForm />
         </div>
       </div>
-    </Layout>
+    </DwarvesLayout>
   )
 }
 

@@ -1,15 +1,33 @@
 import '../styles/index.css'
 import React from 'react'
-import App from 'next/app'
+import App, { AppProps } from 'next/app'
 import NProgressHandler from 'components/NProgressHandler'
 import Head from 'next/head'
 import { AuthContextProvider } from 'context/auth'
 import { Toaster } from 'components/Toast'
+import { GlobalContextProvider, useGlobalContext } from 'context/global'
+import { Layout } from 'components/Layout'
+
+function MyAppBody({ Component, pageProps }: AppProps) {
+  const { languages, versions, selectedLanguage, setSelectedVersion } =
+    useGlobalContext()
+
+  if (!languages || !versions || !setSelectedVersion || !selectedLanguage)
+    return null
+
+  return (
+    <>
+      <NProgressHandler />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+      <Toaster />
+    </>
+  )
+}
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps } = this.props
-
     return (
       <>
         <Head>
@@ -33,13 +51,15 @@ class MyApp extends App {
           <meta property="og:image" content="/thumbnail.jpeg" />
           <meta name="twitter:image" content="/thumbnail.jpeg" />
         </Head>
+
         <AuthContextProvider>
-          <NProgressHandler />
-          <Component {...pageProps} />
+          <GlobalContextProvider>
+            <MyAppBody {...this.props} />
+          </GlobalContextProvider>
         </AuthContextProvider>
-        <Toaster />
       </>
     )
   }
 }
+
 export default MyApp

@@ -1,17 +1,17 @@
-import { Layout } from 'components/Layout'
+import { DwarvesLayout } from 'components/DwarvesLayout'
 import { Heading } from 'components/Heading'
 import { Card } from 'components/Card'
 import { Text } from 'components/Text'
 import { Table } from 'components/Table'
 import { User } from 'types/schema'
 import { Badge } from 'components/Badge'
-import { useFetchUsers } from 'hooks/data/useFetchUsers'
+import { useFetchUsers } from 'hooks'
 
 const DataFetchingPage = () => {
   const { users, isLoading } = useFetchUsers()
 
   return (
-    <Layout>
+    <DwarvesLayout>
       <div className="space-y-px">
         <Heading as="h3">Data fetching</Heading>
         <Text className="text-gray-500">
@@ -28,7 +28,7 @@ const DataFetchingPage = () => {
               width: '35%',
               render: ({ name, avatar, email }) => (
                 <div className="flex items-center">
-                  <div className="flex-shrink-0 h-10 w-10">
+                  <div className="h-10 w-10 flex-shrink-0">
                     <img
                       className="h-10 w-10 rounded-full"
                       src={avatar}
@@ -73,7 +73,7 @@ const DataFetchingPage = () => {
               width: '10%',
               className: 'text-right',
               render: () => (
-                <a className="text-pink-600 hover:text-pink-900 text-sm font-medium">
+                <a className="text-sm font-medium text-pink-600 hover:text-pink-900">
                   Edit
                 </a>
               ),
@@ -81,7 +81,7 @@ const DataFetchingPage = () => {
           ]}
         />
       </Card>
-    </Layout>
+    </DwarvesLayout>
   )
 }
 

@@ -8,5 +8,8 @@
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "all",
-  "xmlWhitespaceSensitivity": "ignore"
+  "xmlWhitespaceSensitivity": "ignore",
+  "plugins": [
+    "prettier-plugin-tailwindcss"
+  ]
 }

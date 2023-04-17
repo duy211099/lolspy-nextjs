@@ -36,7 +36,7 @@ export const ProfileModal = (props: Props) => {
         <ModalTitle className="text-xl">Edit profile</ModalTitle>
         <FormProvider {...formInstance}>
           <form onSubmit={handleSubmit(onSubmit)} className="mt-5">
-            <div className="space-y-5 mb-8">
+            <div className="mb-8 space-y-5">
               <FormInput
                 label="First name"
                 placeholder="First name"
