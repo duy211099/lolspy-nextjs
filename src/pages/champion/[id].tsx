@@ -25,15 +25,6 @@ const Champion = () => {
   const recommendRune: any = recommendRunes.find(
     (_) => _.championId.toString() === key,
   )
-  console.log(
-    'recommendRune',
-    recommendRune,
-    recommendRunes,
-    key,
-    typeof key,
-    recommendRunes[0].championId,
-    typeof recommendRunes[0].championId,
-  )
   if (!champion || !id) return <>Loading...</>
 
   return (
@@ -43,7 +34,7 @@ const Champion = () => {
         <div className="relative h-24 w-24 overflow-hidden rounded-full border-4 border-general-gold-200">
           <Image
             src={kChampionIconUrl(champion?.id)}
-            alt={`${champion?.key  }` ?? ''}
+            alt={`${champion?.key}` ?? ''}
             priority
             layout="fill"
             className="scale-110 rounded-full"
