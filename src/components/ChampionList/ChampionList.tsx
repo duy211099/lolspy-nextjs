@@ -55,9 +55,7 @@ export const ChampionList = () => {
                 <div>
                   <p className="absolute top-4 left-4 text-white">
                     {champion.tags[0]}
-                    {/* {champion.tags.reduce((a, b) => `${a} ${b}`, '')} */}
                   </p>
-                  {/* <p className="absolute top-4 right-4 text-white">right</p> */}
                 </div>
               </div>
             </Link>

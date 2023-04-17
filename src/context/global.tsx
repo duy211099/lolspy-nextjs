@@ -16,7 +16,7 @@ interface GlobalContextValues {
   selectedVersion: string
   selectedLanguage: string
   perkChampionRecommendations: IPerkChampionRecommendation[]
-  allPerks: any[]
+  allPerks: IPerk[]
   perkStyles: IPerkStyles
 
   setVersions: (value: string[]) => void

@@ -48,4 +48,5 @@ export interface IPerk {
   longDesc: string
   shortDesc: string
   tooltip: string
+  iconPath: string
 }

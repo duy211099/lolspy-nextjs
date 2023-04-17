@@ -2,13 +2,16 @@ import { useGlobalContext } from 'context/global'
 import React from 'react'
 import { IPerkChampionRecommendation } from 'types/IPerk'
 import cx from 'classnames'
+import { mapCdragonPath } from 'utils/mapCdragonPath'
+import Image from 'next/image'
 
 type Props = {
   perkChampionRecommendation?: IPerkChampionRecommendation
+  className?: string
 }
 
 export const PerkChampionRecommendation = (props: Props) => {
-  const { perkChampionRecommendation } = props
+  const { perkChampionRecommendation, className } = props
   const { perkStyles, allPerks } = useGlobalContext()
   if (!perkChampionRecommendation) return null
 
@@ -50,18 +53,36 @@ export const PerkChampionRecommendation = (props: Props) => {
   }
 
   return (
-    <div className="flex">
+    <div className={`flex gap-8 ${className}`}>
       <div>
-        <p className="text-center">{primaryPerkStyle?.name}</p>
+        <div className="flex items-center justify-center gap-2">
+          <Image
+            src={mapCdragonPath(primaryPerkStyle?.iconPath ?? '')}
+            height={24}
+            width={24}
+          />
+          <p className="text-center">{primaryPerkStyle?.name}</p>
+        </div>
         {primaryKeyStones?.map((keyStone) => {
           const selected = findSelected(keyStone.perks)
           return (
-            <div className="flex justify-center gap-4">
+            <div className="my-4 flex content-between  justify-center gap-4">
               {keyStone.perks.map((perkId) => {
                 const perk = allPerks.find((_) => _.id === perkId)
                 return (
-                  <div className={cx({ 'text-red-600': perk.id === selected })}>
-                    {perk.name}
+                  <div>
+                    <div
+                      className={cx(
+                        'relative flex h-10 w-10 cursor-help select-none items-center justify-center rounded-full border-2 border-general-gold-200',
+                        { grayscale: perk?.id !== selected },
+                      )}
+                    >
+                      <Image
+                        src={mapCdragonPath(perk?.iconPath ?? '')}
+                        height={32}
+                        width={32}
+                      />
+                    </div>
                   </div>
                 )
               })}
@@ -71,12 +92,59 @@ export const PerkChampionRecommendation = (props: Props) => {
         {primaryRegularPerks?.map((regular) => {
           const selected = findSelected(regular.perks)
           return (
-            <div className="flex justify-center gap-4">
+            <div className="my-4 flex content-between justify-center gap-4">
               {regular.perks.map((perkId) => {
                 const perk = allPerks.find((_) => _.id === perkId)
                 return (
-                  <div className={cx({ 'text-red-600': perk.id === selected })}>
-                    {perk.name}
+                  <div>
+                    <div
+                      className={cx(
+                        'relative flex h-10 w-10 cursor-help select-none items-center justify-center rounded-full border-2 border-general-gold-200',
+                        { grayscale: perk?.id !== selected },
+                      )}
+                    >
+                      <Image
+                        src={mapCdragonPath(perk?.iconPath ?? '')}
+                        height={32}
+                        width={32}
+                      />
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )
+        })}
+      </div>
+      <div>
+        <div className="flex items-center justify-center gap-2">
+          <Image
+            src={mapCdragonPath(secondaryPerkStyle?.iconPath ?? '')}
+            height={24}
+            width={24}
+          />
+          <p className="text-center">{secondaryPerkStyle?.name}</p>
+        </div>
+        {secondaryRegularPerks?.map((regular) => {
+          const selected = findSelected(regular.perks)
+          return (
+            <div className="my-4 flex justify-center gap-4">
+              {regular.perks.map((perkId) => {
+                const perk = allPerks.find((_) => _.id === perkId)
+                return (
+                  <div>
+                    <div
+                      className={cx(
+                        'relative flex h-10 w-10 cursor-help select-none items-center justify-center rounded-full border-2 border-general-gold-200',
+                        { grayscale: perk?.id !== selected },
+                      )}
+                    >
+                      <Image
+                        src={mapCdragonPath(perk?.iconPath ?? '')}
+                        height={32}
+                        width={32}
+                      />
+                    </div>
                   </div>
                 )
               })}
@@ -86,30 +154,23 @@ export const PerkChampionRecommendation = (props: Props) => {
         {primaryStats?.map((stat) => {
           const selected = findSelected(stat.perks)
           return (
-            <div className="flex justify-center gap-4">
+            <div className="my-4 flex justify-center gap-4">
               {stat.perks.map((perkId) => {
                 const perk = allPerks.find((_) => _.id === perkId)
                 return (
-                  <div className={cx({ 'text-red-600': perk.id === selected })}>
-                    {perk.name}
-                  </div>
-                )
-              })}
-            </div>
-          )
-        })}
-      </div>
-      <div>
-        <p className="text-center">{secondaryPerkStyle?.name}</p>
-        {secondaryRegularPerks?.map((regular) => {
-          const selected = findSelected(regular.perks)
-          return (
-            <div className="flex justify-center gap-4">
-              {regular.perks.map((perkId) => {
-                const perk = allPerks.find((_) => _.id === perkId)
-                return (
-                  <div className={cx({ 'text-red-600': perk.id === selected })}>
-                    {perk.name}
+                  <div>
+                    <div
+                      className={cx(
+                        'relative flex h-6 w-6 cursor-help select-none items-center justify-center rounded-full border border-general-gold-200',
+                        { grayscale: perk?.id !== selected },
+                      )}
+                    >
+                      <Image
+                        src={mapCdragonPath(perk?.iconPath ?? '')}
+                        height={20}
+                        width={20}
+                      />
+                    </div>
                   </div>
                 )
               })}

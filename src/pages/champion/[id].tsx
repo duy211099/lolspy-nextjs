@@ -47,7 +47,7 @@ const Champion = () => {
         <div>
           <h2 className="text-xl tracking-wide">{champion?.name}</h2>
           <div className="my-2 flex gap-2">
-            <div className="relative inline-block h-8 w-8">
+            <div className="relative inline-block h-8 w-8 cursor-help">
               <Image
                 layout="fill"
                 src={kGetPassiveImgUrl(
@@ -58,7 +58,10 @@ const Champion = () => {
             </div>
             {champion?.spells?.map((spell) => {
               return (
-                <div key={spell?.id} className="relative inline-block h-8 w-8">
+                <div
+                  key={spell?.id}
+                  className="relative inline-block h-8 w-8 cursor-help"
+                >
                   <Image
                     layout="fill"
                     src={kGetSpellImgUrl(selectedVersion, spell.image.full)}
@@ -70,11 +73,9 @@ const Champion = () => {
         </div>
       </div>
       <PerkChampionRecommendation
+        className="my-8"
         perkChampionRecommendation={perkChampionRecommendation}
       />
-      <div className="mt-16">
-        {JSON.stringify(perkChampionRecommendation?.runeRecommendations[0])}
-      </div>
       <h3 className=" mt-16">General information</h3>
       <div className="flex gap-4">
         <div>
