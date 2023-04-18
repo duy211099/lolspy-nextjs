@@ -7,7 +7,7 @@ export interface IChampion {
   blurb: string
   info: IChampionInfo
   image: IImage
-  tags: string[]
+  tags: ('Assassin' | 'Fighter' | 'Mage' | 'Marksman' | 'Support' | 'Tank')[]
   partype: string[]
   stats: any
   spells: ISpell[]

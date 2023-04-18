@@ -5,6 +5,7 @@ import { useGlobalContext } from 'context/global'
 import { ROUTES } from 'constants/routes'
 import Link from 'next/link'
 import { useFetchChampions } from 'hooks'
+import { RoleIcon } from 'components/RoleIcon/RoleIcon'
 
 export const ChampionList = () => {
   const { languages, selectedVersion, selectedLanguage } = useGlobalContext()
@@ -54,7 +55,7 @@ export const ChampionList = () => {
                 </div>
                 <div>
                   <p className="absolute top-4 left-4 text-white">
-                    {champion.tags[0]}
+                    <RoleIcon roles={champion.tags} />
                   </p>
                 </div>
               </div>
