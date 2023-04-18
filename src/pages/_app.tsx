@@ -1,5 +1,5 @@
 import '../styles/index.css'
-import React from 'react'
+import React, { ReactElement, ReactNode } from 'react'
 import App, { AppProps } from 'next/app'
 import NProgressHandler from 'components/NProgressHandler'
 import Head from 'next/head'
@@ -7,20 +7,29 @@ import { AuthContextProvider } from 'context/auth'
 import { Toaster } from 'components/Toast'
 import { GlobalContextProvider, useGlobalContext } from 'context/global'
 import { Layout } from 'components/Layout'
+import { NextPage } from 'next'
 
-function MyAppBody({ Component, pageProps }: AppProps) {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+function MyAppBody({ Component, pageProps }: AppPropsWithLayout) {
   const { languages, versions, selectedLanguage, setSelectedVersion } =
     useGlobalContext()
 
   if (!languages || !versions || !setSelectedVersion || !selectedLanguage)
     return null
 
+  const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>)
+
   return (
     <>
       <NProgressHandler />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      {getLayout(<Component {...pageProps} />)}
       <Toaster />
     </>
   )
