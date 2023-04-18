@@ -1,4 +1,5 @@
 import { Popover } from '@headlessui/react'
+import { TooltipButton } from 'components/Tooltip'
 import Image from 'next/image'
 import React from 'react'
 
@@ -28,26 +29,16 @@ export const RoleIcon = (props: Props) => {
     <div className="space-y-2">
       {roles?.map((role) => {
         return (
-          <div>
-            <Popover className="relative h-6 w-6 ">
-              <Popover.Button
-                className="cursor-help"
-                onMouseEnter={(event) => {
-                  ;(event.target as HTMLButtonElement).click()
-                }}
-                onMouseLeave={(event) => {
-                  ;(event.target as HTMLButtonElement).click()
-                }}
-              >
-                <Image layout="fill" src={roleIcon[role]} objectFit="cover" />
-              </Popover.Button>
-              <Popover.Panel className="absolute -top-12 left-2 z-10 -translate-x-1/2 rounded-md border border-general-base-100 bg-general-base-500 py-2 px-4">
-                <div>
-                  <p className="text-general-grey-100">{role}</p>
-                </div>
-              </Popover.Panel>
-            </Popover>
-          </div>
+          <Popover className="relative h-6 w-6">
+            <TooltipButton>
+              <Image layout="fill" src={roleIcon[role]} objectFit="cover" />
+            </TooltipButton>
+            <Popover.Panel className="absolute -top-12 left-2 z-10 -translate-x-1/2 rounded-md border border-general-base-100 bg-general-base-500 py-2 px-4">
+              <div>
+                <p className="text-general-grey-100">{role}</p>
+              </div>
+            </Popover.Panel>
+          </Popover>
         )
       })}
     </div>
