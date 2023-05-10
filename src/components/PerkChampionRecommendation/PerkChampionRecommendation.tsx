@@ -58,7 +58,14 @@ export const PerkChampionRecommendation = (props: Props) => {
         <div className="my-4 flex content-between  justify-center gap-4">
           {keyStone.perks.map((perkId) => {
             const perk = allPerks.find((_) => _.id === perkId)
-            return <PerkIcon perk={perk} isSelected={perk?.id === selected} />
+            return (
+              <PerkIcon
+                perk={perk}
+                isSelected={perk?.id === selected}
+                isShowOutline={false}
+                size={40}
+              />
+            )
           })}
         </div>
       )

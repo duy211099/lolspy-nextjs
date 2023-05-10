@@ -72,10 +72,11 @@ const Champion = () => {
           </div>
         </div>
       </div>
-      <PerkChampionRecommendation
-        className="my-8"
-        perkChampionRecommendation={perkChampionRecommendation}
-      />
+      <div className="my-8 bg-[#2d2552] p-4">
+        <PerkChampionRecommendation
+          perkChampionRecommendation={perkChampionRecommendation}
+        />
+      </div>
       <h3 className=" mt-16">General information</h3>
       <div className="flex gap-4">
         <div>
